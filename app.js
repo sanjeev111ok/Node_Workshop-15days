@@ -1,6 +1,11 @@
 require("dotenv").config()
 const express = require("express")
 const { blogs } = require("./model/index.js")
+// const multer = require("./middleware/multerConfig.js").multer
+// const storage = require("./middleware/multerConfig.js").storage
+const { multer, storage } = require("./middleware/multerConfig.js")
+const upload = multer({ storage: storage })
+
 const app = express()
 require("./model/index.js")
 app.use(express.urlencoded({ extended: true })) //when both frontend and backend is in monolitic format else express.json
