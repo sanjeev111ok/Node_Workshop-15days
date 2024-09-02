@@ -26,6 +26,15 @@ app.get("/create", (req, res) => {
   res.render("create.ejs")
 })
 
+app.get("/delete/:id", async (req, res) => {
+  const id = req.params.id
+  await blogs.destroy({
+    where: {
+      id: id,
+    },
+  })
+  res.redirect("/")
+})
 app.post("/create", upload.single("image"), async (req, res) => {
   const filename = req.file.filename
   const { title, subtitle, description } = req.body
