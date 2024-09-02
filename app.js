@@ -16,6 +16,12 @@ app.get("/", async (req, res) => {
   res.render("home.ejs", { blogs: datas })
 })
 
+app.get("/blog/:id", async (req, res) => {
+  const id = req.params.id
+  const blog = await blogs.findByPk(id)
+  res.render("singleBlog.ejs", { blog: blog })
+})
+
 app.get("/create", (req, res) => {
   res.render("create.ejs")
 })

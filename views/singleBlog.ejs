@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage with Navbar and Cards</title>
-    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="/home.css" />
   </head>
   <body>
     <!-- Navbar -->
@@ -22,14 +22,12 @@
 
     <!-- Main Content -->
     <main class="container">
-      <% blogs.forEach(function(blog){ %>
-
       <div class="card">
-        <img src="<%-blog.image%>" alt="Image 1" />
-        <h2><%-blog.title%></h2>
-        <a href="/blog/<%- blog.id %>">Read More..</a>
+        <img src="http://localhost:3000/<%-blog.image%>" alt="Image 1" />
+        <h1><%-blog.title%></h1>
+        <h2><%-blog.subtitle%></h2>
+        <p><%-blog.description%></p>
       </div>
-      <% }) %>
     </main>
   </body>
 </html>
