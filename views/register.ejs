@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Page</title>
+    <link rel="stylesheet" href="create.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="navbar-brand">My Website</a>
+        <ul class="navbar-nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Form Section -->
+    <div class="form-container">
+      <h2>Register User</h2>
+      <form action="/register" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required />
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+    </div>
+  </body>
+</html>

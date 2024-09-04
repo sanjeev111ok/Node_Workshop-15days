@@ -1,10 +1,12 @@
 require("dotenv").config()
 const express = require("express")
-const { blogs } = require("./model/index.js")
+const { blogs, users } = require("./model/index.js")
 // const multer = require("./middleware/multerConfig.js").multer
 // const storage = require("./middleware/multerConfig.js").storage
 const { multer, storage, storage1 } = require("./middleware/multerConfig.js")
 const upload = multer({ storage: storage })
+const bcrypt = require("bcrypt")
+const { where } = require("sequelize")
 
 const app = express()
 require("./model/index.js")
@@ -35,6 +37,7 @@ app.get("/delete/:id", async (req, res) => {
   })
   res.redirect("/")
 })
+
 app.post("/create", upload.single("image"), async (req, res) => {
   const filename = req.file.filename
   const { title, subtitle, description } = req.body
@@ -46,7 +49,50 @@ app.post("/create", upload.single("image"), async (req, res) => {
   })
   res.send("Blog added successfully")
 })
+
+app.get("/register", (req, res) => {
+  res.render("register.ejs")
+})
+
+app.post("/register", async (req, res) => {
+  const { username, email, password, age } = req.body
+  await users.create({
+    Username: username,
+    Email: email,
+    Password: bcrypt.hashSync(password, 8),
+    Age: age,
+  })
+  res.redirect("/login")
+})
+
+app.get("/login", (req, res) => {
+  res.render("login.ejs")
+})
+
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body
+  const data = await users.findAll({
+    where: {
+      email: email,
+    },
+  })
+
+  if (data.length == 0) {
+    res.send("no user with that email")
+  } else {
+    const isMatched = bcrypt.compareSync(password, data[0].Password)
+
+    if (isMatched) {
+      res.redirect("/create")
+      // res.send("dsdssdf")
+    } else {
+      res.send("Invalid password")
+    }
+  }
+})
+
 app.use(express.static("public/css/"))
+app.use(express.static("public/css/blog.css/"))
 app.use(express.static("./storage/"))
 
 app.listen(3000, () => {

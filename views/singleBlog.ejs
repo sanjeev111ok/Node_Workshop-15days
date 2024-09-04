@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage with Navbar and Cards</title>
-    <link rel="stylesheet" href="/home.css" />
+    <link rel="stylesheet" href="/blog.css" />
   </head>
   <body>
     <!-- Navbar -->
@@ -24,11 +24,20 @@
     <main class="container">
       <div class="card">
         <img src="http://localhost:3000/<%-blog.image%>" alt="Image 1" />
-        <h1><%-blog.title%></h1>
-        <h2><%-blog.subtitle%></h2>
-        <p><%-blog.description%></p>
-        <a href="/delete/<%-blog.id%>">Delete me..</a>
+        <div class="card-content">
+          <h1><%-blog.title%></h1>
+          <h2><%-blog.subtitle%></h2>
+          <p><%-blog.description%></p>
+          <a href="/delete/<%-blog.id%>" class="delete-link">Delete me..</a>
+        </div>
       </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>Give all you got...</p>
+      </div>
+    </footer>
   </body>
 </html>
